@@ -41,6 +41,7 @@ int compare_str(char *str1, char *str2, int str_size) {
 
 int main()
 {
+  int i =0;
   //init uart
   uart_init(UART_BASE,FREQ/BAUD);
 
@@ -70,6 +71,24 @@ int main()
 
   free(sendfile);
   free(recvfile);
+
+  // initialize first and second terms
+  int a = 0;
+  int b = 1;
+
+  // initialize the next term (3rd term)
+  int next = a + b;
+
+  // print the first two terms t1 and t2
+  printf("Fibonacci Series: %d, %d, ", a, b);
+
+  // print 3rd to nth terms
+  for (i = 3; i <= 50; ++i) {
+    printf("%d\n", next);
+    a = b;
+    b = next;
+    next = a + b;
+  }
 
   uart_finish();
 }
