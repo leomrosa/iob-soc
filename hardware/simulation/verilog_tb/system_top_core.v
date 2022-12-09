@@ -24,12 +24,12 @@ module system_top
    localparam AXI_DATA_W=`DATA_W;
  
    //PWIRES
-
+ 
    
    /////////////////////////////////////////////
    // TEST PROCEDURE
    //
-   initial begin
+   initial begin      
 
 `ifdef VCD
       $dumpfile("system.vcd");
@@ -89,6 +89,15 @@ module system_top
       .rst(rst)
       );   
 `endif
+   
+   reg [32-1:0] ginput = 0;
+   assign gpio_input = ginput;
+   
+   initial begin
+
+      #45 ginput = 1;
+
+   end
 
    
    //finish simulation on trap

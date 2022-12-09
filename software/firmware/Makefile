@@ -12,6 +12,10 @@ endif
 #uart
 include $(UART_DIR)/software/embedded/embedded.mk
 
+#gpio
+include $(GPIO_DIR)/software/embedded/embedded.mk
+
+
 #HEADERS
 HDR+=periphs.h
 
