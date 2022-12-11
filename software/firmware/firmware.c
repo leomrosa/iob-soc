@@ -42,15 +42,26 @@ int compare_str(char *str1, char *str2, int str_size) {
 
 int main()
 {
-  int i =0;
+  int sw =0;
+  int i = 0;
+  
   //init uart
   uart_init(UART_BASE,FREQ/BAUD);
 
   //init GPIO
   gpio_init(GPIO_BASE);
-  gpio_set(0x1);
-  gpio_set_output_enable(0x1);
-
+  //Enable LED[1]
+  gpio_set_output_enable(0x2);
+  //Check if SWITCH[0] is on
+  sw = gpio_get();
+  if(sw == 1)
+  {
+    //Set LED[1] on
+    gpio_set(0x2);
+  }  
+  i = gpio_get(0x2);
+  printf("Value of i = %d\n\n", i);
+  /*
   //test puts
   uart_puts("\n\n\nHello world!\n\n\n");
 
@@ -77,7 +88,7 @@ int main()
 
   free(sendfile);
   free(recvfile);
-  /*
+  
   // initialize first and second terms
   int a = 0;
   int b = 1;
